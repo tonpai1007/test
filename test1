@@ -1,0 +1,24 @@
+#Alien numeral to integer
+def alien_to_int(s):
+    values = {'A': 1, 'B': 5, 'C': 100, 'D': 500, 'L': 50, 'R': 1000, 'Z': 10}
+    specials = {'AB': 4, 'AZ': 9, 'ZL': 40, 'ZC': 90, 'CD': 400, 'CR': 900}
+
+    total = 0
+    i = 0
+    while i < len(s):
+        if i + 1 < len(s) and s[i:i+2] in specials:
+            total += specials[s[i:i+2]]
+            i += 2
+        else:
+            total += values[s[i]]
+            i += 1
+
+    return total
+
+alien_numeral = input("Enter an alien numeral: ")
+result = alien_to_int(alien_numeral)
+print(f"The integer value of {alien_numeral} is: {result}")
+# Test cases
+print(alien_to_int("AAA"))      # Output: 3
+print(alien_to_int("LBAAA"))    # Output: 53
+print(alien_to_int("RCRZCAB"))  # Output: 1994  
